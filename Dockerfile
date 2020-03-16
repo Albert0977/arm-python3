@@ -5,7 +5,7 @@ ENV LANG C.UTF-8
 
 # Enable cross-build for aarch64
 #EnableQEMU COPY qemu-arm-static /usr/bin
-RUN apt-get update && apt-get install -y python3 gcc curl
+RUN apt-get update && apt-get install -y python3 gcc curl vim
 
 # Set the versions
 ARG DOCKER_COMPOSE_VER
@@ -26,8 +26,8 @@ WORKDIR /build/pyinstallerbootloader
 RUN wget https://github.com/pyinstaller/pyinstaller/releases/download/v3.6/PyInstaller-3.6.tar.gz --no-check-certificate && tar xvf PyInstaller-3.6.tar.gz
 RUN apt-get install  -y zlib1g-dev
 RUN cd PyInstaller*/ \
-    && python3 setup.py install
-
+    && python3 setup.py install \
+    && cd /
 # Clone docker-compose
 
 # Copy out the generated binary
